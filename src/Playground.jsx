@@ -129,6 +129,7 @@ const Playground = () => {
             <p>
                 Made with Love by <a href="https://jinsoft.in/">Jinsoft</a>
             </p>
+            <p>Get the code here: <a href="https://github.com/tuktuk24/assamese-wordy">Github</a></p>
         </div>
     );
 }
