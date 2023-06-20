@@ -73,6 +73,7 @@
 
 .hidden {
     position: relative;
+    border: 1px dashed dodgerblue;
 }
 
 .hidden::after {

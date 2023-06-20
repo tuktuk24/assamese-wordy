@@ -4,16 +4,8 @@ export const finalSpaceCharacters = [
         thumb: '/images/ao.jpg'
     },
     {
-        id: 'ga',
-        thumb: '/images/ga.png'
-    },
-    {
         id: 'ja-b',
         thumb: '/images/ja-b.png'
-    },
-    {
-        id: 'ra',
-        thumb: '/images/ra.png'
     },
     {
         id: 'ba',
@@ -22,6 +14,14 @@ export const finalSpaceCharacters = [
     {
         id: 'ta-m',
         thumb: '/images/ta-m.png'
+    },
+    {
+        id: 'ga',
+        thumb: '/images/ga.png'
+    },
+    {
+        id: 'ra',
+        thumb: '/images/ra.png'
     },
     {
         id: 'no-m',
@@ -33,6 +33,139 @@ export const finalSpaceCharacters = [
     }
 ]
 
+/* 2 letter */
+export const ban = [
+    {
+        id: 'ba',
+        thumb: '/images/ba.png'
+    },
+    {
+        id: 'no-m',
+        thumb: '/images/no-m.png'
+    }
+]
+
+export const bar = [
+    {
+        id: 'ba',
+        thumb: '/images/ba.png'
+    },
+    {
+        id: 'ra',
+        thumb: '/images/ra.png'
+    }
+]
+
+export const jar = [
+    {
+        id: 'ja-b',
+        thumb: '/images/ja-b.png'
+    },
+    {
+        id: 'ra',
+        thumb: '/images/ra.png'
+    }
+]
+
+export const nar = [
+    {
+        id: 'no-m',
+        thumb: '/images/no-m.png'
+    },
+    {
+        id: 'ra',
+        thumb: '/images/ra.png'
+    }
+]
+
+export const hot = [
+    {
+        id: 'ho',
+        thumb: '/images/ho.png'
+    },
+    {
+        id: 'ta-m',
+        thumb: '/images/ta-m.png'
+    },
+]
+
+/* 3 letter */
+export const batar = [
+    {
+        id: 'ba',
+        thumb: '/images/ba.png'
+    },
+    {
+        id: 'ta-m',
+        thumb: '/images/ta-m.png'
+    },
+    {
+        id: 'ra',
+        thumb: '/images/ra.png'
+    }
+]
+
+export const garaj = [
+    {
+        id: 'ga',
+        thumb: '/images/ga.png'
+    },
+    {
+        id: 'ra',
+        thumb: '/images/ra.png'
+    },
+    {
+        id: 'ja-b',
+        thumb: '/images/ja-b.png'
+    },
+]
+
+export const haran = [
+    {
+        id: 'ho',
+        thumb: '/images/ho.png'
+    },
+    {
+        id: 'ra',
+        thumb: '/images/ra.png'
+    },
+    {
+        id: 'no-m',
+        thumb: '/images/no-m.png'
+    },
+]
+
+export const jagar = [
+    {
+        id: 'ja-b',
+        thumb: '/images/ja-b.png'
+    },
+    {
+        id: 'ga',
+        thumb: '/images/ga.png'
+    },
+    {
+        id: 'ra',
+        thumb: '/images/ra.png'
+    },
+]
+
+export const bahan = [
+    {
+        id: 'ba',
+        thumb: '/images/ba.png'
+    },
+    {
+        id: 'ho',
+        thumb: '/images/ho.png'
+    },
+    {
+        id: 'no-m',
+        thumb: '/images/no-m.png'
+    },
+]
+
+/* 4 letter */
 export const ajgar = [
     {
         id: 'ao',
