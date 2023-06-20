@@ -48,72 +48,72 @@ const Playground = () => {
         if (!isFirst2Matched && longWord.match(words[9].join(""))) {
             setMessage("YAY! Word Matched")
             setIsFirst2Matched(true)
-            return
+
         }
         if (!isSecond2Matched && longWord.match(words[10].join(""))) {
             setMessage("YAY! Word Matched")
             setIsSecond2Matched(true)
-            return
+
         }
         if (!isThird2Matched && longWord.match(words[11].join(""))) {
             setMessage("YAY! Word Matched")
             setIsThird2Matched(true)
-            return
+
         }
         if (!isFourth2Matched && longWord.match(words[12].join(""))) {
             setMessage("YAY! Word Matched")
             setIsFourth2Matched(true)
-            return
+
         }
         if (!isFifth2Matched && longWord.match(words[13].join(""))) {
             setMessage("YAY! Word Matched")
             setIsFifth2Matched(true)
-            return
+
         }
         if (!isFirst3Matched && longWord.match(words[4].join(""))) {
             setMessage("YAY! Word Matched")
             setIsFirst3Matched(true)
-            return
+
         }
         if (!isSecond3Matched && longWord.match(words[5].join(""))) {
             setMessage("YAY! Word Matched")
             setIsSecond3Matched(true)
-            return
+
         }
         if (!isThird3Matched && longWord.match(words[6].join(""))) {
             setMessage("YAY! Word Matched")
             setIsThird3Matched(true)
-            return
+
         }
         if (!isFourth3Matched && longWord.match(words[7].join(""))) {
             setMessage("YAY! Word Matched")
             setIsFourth3Matched(true)
-            return
+
         }
         if (!isFifth3Matched && longWord.match(words[8].join(""))) {
             setMessage("YAY! Word Matched")
             setIsFifth3Matched(true)
-            return
+
         }
         if (!isFirstMatched && longWord.match(words[0].join(""))) {
             setMessage("YAY! Word Matched")
             setIsFirstMatched(true)
-            return
+
         }
         if (!isSecondMatched && longWord.match(words[1].join(""))) {
             setMessage("YAY! Word Matched")
             setIsSecondMatched(true)
-            return
+
         }
         if (!isThirdMatched && longWord.match(words[2].join(""))) {
             setMessage("YAY! Word Matched")
             setIsThirdMatched(true)
-            return
+
         }
         if (!isFourthMatched && longWord.match(words[3].join(""))) {
             setMessage("YAY! Word Matched")
             setIsFourthMatched(true)
-            return
+
         }
     }, [characters])
 
