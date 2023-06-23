@@ -56,10 +56,22 @@
 .circular {
     width: 500px;
     height: 500px;
-    background-color: #FF033E;
+    /* background-color: #ff033e; */
+    background: transparent;
     border-radius: 50%;
     position: relative;
     flex-wrap: wrap;
+}
+
+#canvas {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: transparent;
+    border-radius: 50%;
+    z-index: -1;
 }
 
 .circular li {

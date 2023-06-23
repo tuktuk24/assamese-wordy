@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import CookieLetter from './components/CookieLetter';
+import CookieCanvas from './components/CookieCanvas';
 import { finalSpaceCharacters, words, ban, bar, jar, nar, hot, batar, garaj, haran, jagar, bahan, ajgar, abagat, abanat, hazarat } from './utils/stage1';
 
 const WordCookies = () => {
     const [characters, updateCharacters] = useState(finalSpaceCharacters);
     const [match, setMatch] = useState([])
     const [startPos, setStartPos] = useState(null)
+    const [pathPoints, setPathPoints] = useState([])
     const [message, setMessage] = useState(null)
     const [isFirstMatched, setIsFirstMatched] = useState(false)
     const [isSecondMatched, setIsSecondMatched] = useState(false)
@@ -25,7 +27,10 @@ const WordCookies = () => {
 
     useEffect(() => {
         const messageInterval = setInterval(() => setMessage(null), 3000)
-        return () => clearInterval(messageInterval)
+        
+        return () => {
+            clearInterval(messageInterval)
+        }
     }, [])
 
     useEffect(() => {
@@ -112,15 +117,29 @@ const WordCookies = () => {
     function handleDragStart(event) {
         //
         console.log("STARTED", event)
+        setPathPoints([])
+        
         setStartPos({
             x: event.screenX,
             y: event.screenY
         })
     }
 
-    function handleDraw(event) {
-        //
-        console.log("DRAWING", event)
+    function handleDrag(event){
+        if(Math.random() > 0.7){
+            //calculate delta
+            const deltaX = pathPoints[pathPoints.length - 1]?.x - event.screenX
+            const deltaY = pathPoints[pathPoints.length - 1]?.y - event.screenY
+            setPathPoints([
+                ...pathPoints,
+                {
+                    x: event.screenX,
+                    y: event.screenY,
+                    deltaX, deltaY
+                }
+            ])
+        }
+        console.log("DRAWING", event.screenY)
     }
 
     function handleOnDragEnd(result) {
@@ -258,7 +277,8 @@ const WordCookies = () => {
 
                 {isWinner ? <h2>CONGRATULATIONS</h2>
                     :
-                    <ul className="characters circular" onDragStart={e => handleDragStart(e)} onDrag={e => handleDraw(e)}>
+                    <ul className="characters circular" onDragStart={e => handleDragStart(e)} onDrag={e => handleDrag(e)}>
+                        <CookieCanvas startPos={startPos} pathPoints={pathPoints}/>
                         {characters.map(({ id, thumb }, index) => <CookieLetter key={id} thumb={thumb} id={id} index={index} />)}
                     </ul>
                 }
