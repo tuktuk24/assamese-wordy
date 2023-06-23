@@ -53,6 +53,31 @@
     height: auto;
 }
 
+.circular {
+    width: 500px;
+    height: 500px;
+    background-color: #FF033E;
+    border-radius: 50%;
+    position: relative;
+    flex-wrap: wrap;
+}
+
+.circular li {
+    display: flex;
+    position: absolute;
+    top: 51%;
+    left: 51%;
+    margin: -56px;
+    border-radius: 51%;
+    justify-content: center;
+    align-items: center;
+    line-height: 100px;
+}
+
+.circular .characters-thumb {
+    background-color: transparent;
+}
+
 .small-words {
     display: flex;
     gap: 20px;

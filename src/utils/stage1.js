@@ -33,6 +33,23 @@ export const finalSpaceCharacters = [
     }
 ]
 
+export const words = [
+    ["ao", "ja-b", "ga", "ra"],
+    ["ao", "ba", "ga", "ta-m"],
+    ["ao", "ba", "no-m", "ta-m"],
+    ["ho", "ja-b", "ra", "ta-m"],
+    ["ba", "ta-m", "ra"],
+    ["ga", "ra", "ja-b"],
+    ["ho", "ra", "no-m"],
+    ["ja-b", "ga", "ra"],
+    ["ba", "ho", "no-m"],
+    ["ba", "no-m"],
+    ["ba", "ra"],
+    ["ja-b", "ra"],
+    ["no-m", "ra"],
+    ["ho", "ta-m"],
+]
+
 /* 2 letter */
 export const ban = [
     {
