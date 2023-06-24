@@ -70,15 +70,15 @@
     top: 0;
     left: 0;
     background: transparent;
-    border-radius: 50%;
+    /* border-radius: 50%; */
     z-index: -1;
 }
 
 .circular li {
     display: flex;
     position: absolute;
-    top: 51%;
-    left: 51%;
+    top: 50%;
+    left: 50%;
     margin: -56px;
     border-radius: 51%;
     justify-content: center;

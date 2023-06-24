@@ -7,7 +7,7 @@ const CookieLetter = ({ thumb, id, index }) => {
     }
     return (
         <li style={styles}>
-            <div className="characters-thumb" style={{ backgroundImage: 'url(' + thumb + ')', backgroundSize: 'cover' }}>
+            <div id={id} className="characters-thumb" style={{ backgroundImage: 'url(' + thumb + ')', backgroundSize: 'cover' }}>
 
             </div>
         </li>

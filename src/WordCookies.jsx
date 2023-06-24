@@ -6,6 +6,7 @@ import { finalSpaceCharacters, words, ban, bar, jar, nar, hot, batar, garaj, har
 const WordCookies = () => {
     const [characters, updateCharacters] = useState(finalSpaceCharacters);
     const [match, setMatch] = useState([])
+    const [isDragging, setIsDragging] = useState(false)
     const [startPos, setStartPos] = useState(null)
     const [pathPoints, setPathPoints] = useState([])
     const [message, setMessage] = useState(null)
@@ -114,32 +115,42 @@ const WordCookies = () => {
         }
     }, [isFirstMatched, isSecondMatched, isThirdMatched, isFourthMatched, isFirst3Matched, isSecond3Matched, isThird3Matched, isFourth3Matched, isFifth3Matched, isFirst2Matched, isSecond2Matched, isThird2Matched, isFourth2Matched, isFifth2Matched])
 
-    function handleDragStart(event) {
+    useEffect(() => console.log("START", startPos), [startPos])
+
+    function handleDragStart(e) {
         //
-        console.log("STARTED", event)
         setPathPoints([])
-        
+        setIsDragging(true)
         setStartPos({
-            x: event.screenX,
-            y: event.screenY
+            x: e.clientX,
+            y: e.clientY
         })
+        // console.log("MOUSE DOWN", e, e.target.id)
     }
 
-    function handleDrag(event){
-        if(Math.random() > 0.7){
-            //calculate delta
-            const deltaX = pathPoints[pathPoints.length - 1]?.x - event.screenX
-            const deltaY = pathPoints[pathPoints.length - 1]?.y - event.screenY
-            setPathPoints([
-                ...pathPoints,
-                {
-                    x: event.screenX,
-                    y: event.screenY,
-                    deltaX, deltaY
-                }
-            ])
+    function handleDrag(e){
+        if(isDragging){
+            // console.log("DRAWING", isDragging, e)
+            if(e.target?.id){
+                console.log("TARGET", e.target.id)
+            }
+            
+                setPathPoints([
+                    ...pathPoints,
+                    {
+                        x: e.clientX,
+                        y: e.clientY,
+                    }
+                ])
+            
         }
-        console.log("DRAWING", event.screenY)
+        
+    }
+
+    function handleDragEnd(e){
+        // setStartPos(null)
+        setIsDragging(false)
+        // console.log("MOUSE UP",e, e.target.id)
     }
 
     function handleOnDragEnd(result) {
@@ -277,13 +288,21 @@ const WordCookies = () => {
 
                 {isWinner ? <h2>CONGRATULATIONS</h2>
                     :
-                    <ul className="characters circular" onDragStart={e => handleDragStart(e)} onDrag={e => handleDrag(e)}>
+                    <ul 
+                        className="characters circular" 
+                        onMouseDown={handleDragStart}
+                        onMouseUp={handleDragEnd}
+                        onMouseMove={handleDrag}
+                        >
                         <CookieCanvas startPos={startPos} pathPoints={pathPoints}/>
                         {characters.map(({ id, thumb }, index) => <CookieLetter key={id} thumb={thumb} id={id} index={index} />)}
                     </ul>
                 }
             </header>
             {message && <h2>{message}</h2>}
+            <br/>
+            <br/>
+            <br/>
             <p>
                 Made with Love by <a href="https://jinsoft.in/">Jinsoft</a>
             </p>
