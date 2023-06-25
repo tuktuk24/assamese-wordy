@@ -28,7 +28,7 @@ const WordCookies = () => {
 
     useEffect(() => {
         const messageInterval = setInterval(() => setMessage(null), 3000)
-        
+
         return () => {
             clearInterval(messageInterval)
         }
@@ -128,26 +128,25 @@ const WordCookies = () => {
         // console.log("MOUSE DOWN", e, e.target.id)
     }
 
-    function handleDrag(e){
-        if(isDragging){
-            // console.log("DRAWING", isDragging, e)
-            if(e.target?.id){
+    function handleDrag(e) {
+        if (isDragging) {
+            if (e.target?.id) {
                 console.log("TARGET", e.target.id)
             }
-            
-                setPathPoints([
-                    ...pathPoints,
-                    {
-                        x: e.clientX,
-                        y: e.clientY,
-                    }
-                ])
-            
+
+            setPathPoints([
+                ...pathPoints,
+                {
+                    x: e.clientX,
+                    y: e.clientY,
+                }
+            ])
+
         }
-        
+
     }
 
-    function handleDragEnd(e){
+    function handleDragEnd(e) {
         // setStartPos(null)
         setIsDragging(false)
         // console.log("MOUSE UP",e, e.target.id)
@@ -288,21 +287,21 @@ const WordCookies = () => {
 
                 {isWinner ? <h2>CONGRATULATIONS</h2>
                     :
-                    <ul 
-                        className="characters circular" 
+                    <ul
+                        className="characters circular"
                         onMouseDown={handleDragStart}
                         onMouseUp={handleDragEnd}
                         onMouseMove={handleDrag}
-                        >
-                        <CookieCanvas startPos={startPos} pathPoints={pathPoints}/>
+                    >
+                        <CookieCanvas startPos={startPos} pathPoints={pathPoints} />
                         {characters.map(({ id, thumb }, index) => <CookieLetter key={id} thumb={thumb} id={id} index={index} />)}
                     </ul>
                 }
             </header>
             {message && <h2>{message}</h2>}
-            <br/>
-            <br/>
-            <br/>
+            <br />
+            <br />
+            <br />
             <p>
                 Made with Love by <a href="https://jinsoft.in/">Jinsoft</a>
             </p>
