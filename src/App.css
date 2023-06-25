@@ -18,8 +18,8 @@
 }
 
 ul {
-    margin-top: 2px;
-    margin-bottom: 2px;
+    margin-top: 5px;
+    margin-bottom: 10px;
 }
 
 .characters {
@@ -67,6 +67,8 @@ ul {
     position: relative;
     flex-wrap: wrap;
     margin-top: 20px;
+    outline: red solid 15px;
+    background-color: rgba(255, 0, 0, 0.5);
 }
 
 #canvas {
@@ -80,12 +82,12 @@ ul {
     z-index: -1;
 }
 
-.circular>li {
+.circular > li {
     display: flex;
     position: absolute;
     top: 50%;
     left: 50%;
-    margin: -56px;
+    margin: -48px;
     border-radius: 51%;
     justify-content: center;
     align-items: center;
@@ -126,7 +128,6 @@ ul {
     background-color: #e8e8e8;
     padding: 0.25em;
 }
-
 
 .small-words {
     display: flex;

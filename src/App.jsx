@@ -10,7 +10,7 @@ function App() {
   return (
     <>
       <WordCookies />
-      <ToastContainer position="bottom-left" theme="dark" />
+      <ToastContainer position="top-center" theme="dark" />
     </>
   )
 }
