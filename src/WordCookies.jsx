@@ -1,15 +1,14 @@
 import React, { useState, useEffect } from 'react';
+import { toast } from 'react-toastify';
 import CookieLetter from './components/CookieLetter';
 import CookieCanvas from './components/CookieCanvas';
-import { finalSpaceCharacters, words, ban, bar, jar, nar, hot, batar, garaj, haran, jagar, bahan, ajgar, abagat, abanat, hazarat } from './utils/stage1';
+import { characters, words, ban, bar, jar, nar, hot, batar, garaj, haran, jagar, bahan, ajgar, abagat, abanat, hazarat } from './utils/stage1';
 
 const WordCookies = () => {
-    const [characters, updateCharacters] = useState(finalSpaceCharacters);
     const [match, setMatch] = useState([])
     const [isDragging, setIsDragging] = useState(false)
     const [startPos, setStartPos] = useState(null)
     const [pathPoints, setPathPoints] = useState([])
-    const [message, setMessage] = useState(null)
     const [isFirstMatched, setIsFirstMatched] = useState(false)
     const [isSecondMatched, setIsSecondMatched] = useState(false)
     const [isThirdMatched, setIsThirdMatched] = useState(false)
@@ -26,146 +25,114 @@ const WordCookies = () => {
     const [isFifth2Matched, setIsFifth2Matched] = useState(false)
     const [isWinner, setIsWinner] = useState(false)
 
-    useEffect(() => {
-        const messageInterval = setInterval(() => setMessage(null), 3000)
 
-        return () => {
-            clearInterval(messageInterval)
-        }
-    }, [])
-
-    useEffect(() => {
-        const longWord = characters.map(c => c.id).reduce((word, letter) => word + letter, "")
-        if (!isFirst2Matched && longWord.match(words[9].join(""))) {
-            setMessage("YAY! Word Matched")
-            setIsFirst2Matched(true)
-
-        }
-        if (!isSecond2Matched && longWord.match(words[10].join(""))) {
-            setMessage("YAY! Word Matched")
-            setIsSecond2Matched(true)
-
-        }
-        if (!isThird2Matched && longWord.match(words[11].join(""))) {
-            setMessage("YAY! Word Matched")
-            setIsThird2Matched(true)
-
-        }
-        if (!isFourth2Matched && longWord.match(words[12].join(""))) {
-            setMessage("YAY! Word Matched")
-            setIsFourth2Matched(true)
-
-        }
-        if (!isFifth2Matched && longWord.match(words[13].join(""))) {
-            setMessage("YAY! Word Matched")
-            setIsFifth2Matched(true)
-
-        }
-        if (!isFirst3Matched && longWord.match(words[4].join(""))) {
-            setMessage("YAY! Word Matched")
-            setIsFirst3Matched(true)
-
-        }
-        if (!isSecond3Matched && longWord.match(words[5].join(""))) {
-            setMessage("YAY! Word Matched")
-            setIsSecond3Matched(true)
-
-        }
-        if (!isThird3Matched && longWord.match(words[6].join(""))) {
-            setMessage("YAY! Word Matched")
-            setIsThird3Matched(true)
-
-        }
-        if (!isFourth3Matched && longWord.match(words[7].join(""))) {
-            setMessage("YAY! Word Matched")
-            setIsFourth3Matched(true)
-
-        }
-        if (!isFifth3Matched && longWord.match(words[8].join(""))) {
-            setMessage("YAY! Word Matched")
-            setIsFifth3Matched(true)
-
-        }
-        if (!isFirstMatched && longWord.match(words[0].join(""))) {
-            setMessage("YAY! Word Matched")
-            setIsFirstMatched(true)
-
-        }
-        if (!isSecondMatched && longWord.match(words[1].join(""))) {
-            setMessage("YAY! Word Matched")
-            setIsSecondMatched(true)
-
-        }
-        if (!isThirdMatched && longWord.match(words[2].join(""))) {
-            setMessage("YAY! Word Matched")
-            setIsThirdMatched(true)
-
-        }
-        if (!isFourthMatched && longWord.match(words[3].join(""))) {
-            setMessage("YAY! Word Matched")
-            setIsFourthMatched(true)
-
-        }
-    }, [characters])
 
     useEffect(() => {
         if (isFirstMatched && isSecondMatched && isThirdMatched && isFourthMatched && isFirst3Matched && isSecond3Matched && isThird3Matched && isFourth3Matched && isFifth3Matched && isFirst2Matched && isSecond2Matched && isThird2Matched && isFourth2Matched && isFifth2Matched) {
-            setMessage("WINNER!")
+            toast("WINNER!")
             setIsWinner(true)
         }
     }, [isFirstMatched, isSecondMatched, isThirdMatched, isFourthMatched, isFirst3Matched, isSecond3Matched, isThird3Matched, isFourth3Matched, isFifth3Matched, isFirst2Matched, isSecond2Matched, isThird2Matched, isFourth2Matched, isFifth2Matched])
 
-    useEffect(() => console.log("START", startPos), [startPos])
-
     function handleDragStart(e) {
-        //
         setPathPoints([])
         setIsDragging(true)
         setStartPos({
             x: e.clientX,
             y: e.clientY
         })
-        // console.log("MOUSE DOWN", e, e.target.id)
+        setMatch(characters.filter(c => c.id === e.target.id))
     }
 
     function handleDrag(e) {
         if (isDragging) {
             if (e.target?.id) {
-                console.log("TARGET", e.target.id)
-            }
-
-            setPathPoints([
-                ...pathPoints,
-                {
-                    x: e.clientX,
-                    y: e.clientY,
+                //Check if already there
+                const found = match.find(i => i.id === e.target.id)
+                if (!found) {
+                    setMatch([
+                        ...match,
+                        characters.filter(c => c.id === e.target.id)[0]
+                    ])
                 }
-            ])
-
+            }
+            if (Math.random() > 0.5) {
+                setPathPoints([
+                    ...pathPoints,
+                    {
+                        x: e.clientX,
+                        y: e.clientY,
+                    }
+                ])
+            }
         }
 
     }
 
     function handleDragEnd(e) {
-        // setStartPos(null)
         setIsDragging(false)
-        // console.log("MOUSE UP",e, e.target.id)
+        checkWord()
     }
 
-    function handleOnDragEnd(result) {
-        if (!result.destination) return;
+    function checkWord() {
 
-        const items = Array.from(characters);
-        const [reorderedItem] = items.splice(result.source.index, 1);
-        items.splice(result.destination.index, 0, reorderedItem);
-
-        updateCharacters(items);
+        const longWord = match.map(c => c.id).reduce((word, letter) => word + letter, "")
+        if (!isFirstMatched && longWord.match(words[0].join(""))) {
+            toast(`YAY! Word Matched অজগৰ`)
+            setIsFirstMatched(true)
+        } else if (!isSecondMatched && longWord.match(words[1].join(""))) {
+            toast(`YAY! Word Matched অবগত`)
+            setIsSecondMatched(true)
+        } else if (!isThirdMatched && longWord.match(words[2].join(""))) {
+            toast(`YAY! Word Matched অবনত `)
+            setIsThirdMatched(true)
+        } else if (!isFourthMatched && longWord.match(words[3].join(""))) {
+            toast(`YAY! Word Matched হজৰত `)
+            setIsFourthMatched(true)
+        } else if (!isFirst3Matched && longWord.match(words[4].join(""))) {
+            toast(`YAY! Word Matched বতৰ`)
+            setIsFirst3Matched(true)
+        } else if (!isSecond3Matched && longWord.match(words[5].join(""))) {
+            toast(`YAY! Word Matched গৰজ`)
+            setIsSecond3Matched(true)
+        } else if (!isThird3Matched && longWord.match(words[6].join(""))) {
+            toast(`YAY! Word Matched হৰন`)
+            setIsThird3Matched(true)
+        } else if (!isFourth3Matched && longWord.match(words[7].join(""))) {
+            toast(`YAY! Word Matched জগৰ`)
+            setIsFourth3Matched(true)
+        } else if (!isFifth3Matched && longWord.match(words[8].join(""))) {
+            toast(`YAY! Word Matched বহন`)
+            setIsFifth3Matched(true)
+        } else if (!isFirst2Matched && longWord.match(words[9].join(""))) {
+            toast(`YAY! Word Matched বন`)
+            setIsFirst2Matched(true)
+        } else if (!isSecond2Matched && longWord.match(words[10].join(""))) {
+            toast(`YAY! Word Matched বৰ`)
+            setIsSecond2Matched(true)
+        } else if (!isThird2Matched && longWord.match(words[11].join(""))) {
+            toast(`YAY! Word Matched জৰ`)
+            setIsThird2Matched(true)
+        } else if (!isFourth2Matched && longWord.match(words[12].join(""))) {
+            toast(`YAY! Word Matched নৰ `)
+            setIsFourth2Matched(true)
+        } else if (!isFifth2Matched && longWord.match(words[13].join(""))) {
+            toast(`YAY! Word Matched হত `)
+            setIsFifth2Matched(true)
+        } else {
+            toast.error("No match!!", {
+                theme: "colored",
+            })
+        }
+        setMatch([])
+        setStartPos(null)
+        setIsDragging(false)
     }
 
     return (
         <div className="App">
             <header className="App-header">
-                <h1>অসমীয়া শব্দৰ খেল</h1>
+                <h3>অসমীয়া শব্দৰ খেল</h3>
                 <div className='small-words'>
                     <ul className={isFirst2Matched ? "characters" : "characters hidden"} >
                         {ban.map(({ id, thumb }) => <li key={id} >
@@ -294,18 +261,23 @@ const WordCookies = () => {
                         onMouseMove={handleDrag}
                     >
                         <CookieCanvas startPos={startPos} pathPoints={pathPoints} />
-                        {characters.map(({ id, thumb }, index) => <CookieLetter key={id} thumb={thumb} id={id} index={index} />)}
+                        {characters.map(({ id, thumb }, index) => <CookieLetter key={id} thumb={thumb} id={id} index={index} selection={match} />)}
+                        <ul className="characters matchedCookies" >
+                            {match.map(({ id, thumb }) => <li key={id} >
+                                <div className="characters-thumb">
+                                    <img src={thumb} alt={`${id}`} />
+                                </div>
+                            </li>
+                            )}
+                        </ul>
                     </ul>
                 }
             </header>
-            {message && <h2>{message}</h2>}
             <br />
             <br />
             <br />
             <p>
-                Made with Love by <a href="https://jinsoft.in/">Jinsoft</a>
-            </p>
-            <p>Get the code here: <a href="https://github.com/tuktuk24/assamese-wordy">Github</a></p>
+                Made with Love by <a href="https://jinsoft.in/">Jinsoft</a>. Get the code here: <a href="https://github.com/tuktuk24/assamese-wordy">Github</a></p>
         </div>
     );
 }

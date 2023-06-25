@@ -1,4 +1,4 @@
-export const finalSpaceCharacters = [
+export const characters = [
     {
         id: 'ao',
         thumb: '/images/ao.png'

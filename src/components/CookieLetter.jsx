@@ -1,9 +1,10 @@
 
 
-const CookieLetter = ({ thumb, id, index }) => {
+const CookieLetter = ({ thumb, id, index, selection }) => {
     const styles = {
         transform: `rotate(${46 * index}deg) translate(195px) rotate(-${46 * index}deg)`,
-        borderRadius: '50%'
+        borderRadius: '50%',
+        backgroundColor: selection.find(i => i.id === id) ? "rgba(255, 0, 0, 0.5)" : "transparent"
     }
     return (
         <li style={styles}>

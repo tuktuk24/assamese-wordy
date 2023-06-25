@@ -19,7 +19,7 @@ const CookieCanvas = ({ startPos, pathPoints }) => {
     useEffect(() => {
         if (startPos && ctx) {
             ctx.strokeStyle = "dodgerblue";
-            ctx.lineWidth = 1
+            ctx.lineWidth = 3
             ctx.beginPath();
             ctx.moveTo(startPos.x - getXCorrection(startPos.x), startPos.y - getYCorrection(startPos.y));
 
